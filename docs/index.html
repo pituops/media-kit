@@ -58,15 +58,26 @@
 </head>
 <body class="mesh-bg text-slate-100 min-h-screen">
   <div class="max-w-7xl mx-auto px-5 md:px-8 py-8 md:py-12 space-y-8">
+    <section class="no-print flex justify-end">
+      <div class="glass rounded-xl p-2 inline-flex items-center gap-2">
+        <span id="langLabel" class="text-xs text-slate-300 uppercase tracking-wider px-2">Language</span>
+        <div class="flex items-center gap-1">
+          <button type="button" data-lang-btn data-lang="en" class="px-3 py-1 text-xs rounded-lg border border-slate-600/70 text-slate-200 hover:bg-slate-800/60 transition">EN</button>
+          <button type="button" data-lang-btn data-lang="pt" class="px-3 py-1 text-xs rounded-lg border border-slate-600/70 text-slate-200 hover:bg-slate-800/60 transition">PT</button>
+          <button type="button" data-lang-btn data-lang="es" class="px-3 py-1 text-xs rounded-lg border border-slate-600/70 text-slate-200 hover:bg-slate-800/60 transition">ES</button>
+        </div>
+      </div>
+    </section>
+
     <header class="glass rounded-3xl p-6 md:p-8 shadow-glow">
       <div class="grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
         <div>
-          <p class="text-cyanx text-xs md:text-sm tracking-[0.22em] uppercase font-semibold">Media Kit</p>
-          <h1 class="text-3xl md:text-5xl font-extrabold mt-2 leading-tight">
+          <p id="heroBadge" class="text-cyanx text-xs md:text-sm tracking-[0.22em] uppercase font-semibold">Media Kit</p>
+          <h1 id="heroTitle" class="text-3xl md:text-5xl font-extrabold mt-2 leading-tight">
             Multilingual YouTube
             <span class="text-cyanx">Brand Partnerships</span>
           </h1>
-          <p class="text-slate-300 mt-4 max-w-2xl text-sm md:text-base">
+          <p id="heroSubtitle" class="text-slate-300 mt-4 max-w-2xl text-sm md:text-base">
             Founder-led channel portfolio with audience across PT-BR, ES, FR, and DE.
             Partnership model centered on integrated placements in regular channel uploads.
           </p>
@@ -81,14 +92,14 @@
           <div class="flex items-center gap-4">
             <img src="./pictures.jpg" alt="Daniel Alborghetti" class="w-24 h-24 md:w-28 md:h-28 object-cover rounded-2xl border border-slate-600/60" />
             <div>
-              <p class="text-slate-300 text-xs uppercase tracking-wider">Founder & Channel Owner</p>
+              <p id="founderRole" class="text-slate-300 text-xs uppercase tracking-wider">Founder & Channel Owner</p>
               <p class="font-bold text-lg leading-tight mt-1">Daniel Alborghetti</p>
-              <p class="text-slate-300 text-sm mt-1">Brand partnerships for multilingual YouTube inventory</p>
+              <p id="founderPitch" class="text-slate-300 text-sm mt-1">Brand partnerships for multilingual YouTube inventory</p>
             </div>
           </div>
           <div class="mt-4 pt-4 border-t border-slate-700/60 text-sm space-y-1">
-            <p><span class="text-slate-400">Email:</span> alborghettibusiness@gmail.com</p>
-            <p><span class="text-slate-400">LinkedIn:</span> linkedin.com/in/daniel-alborghetti</p>
+            <p><span id="emailLabel" class="text-slate-400">Email:</span> alborghettibusiness@gmail.com</p>
+            <p><span id="linkedinLabel" class="text-slate-400">LinkedIn:</span> linkedin.com/in/daniel-alborghetti</p>
           </div>
         </div>
       </div>
@@ -96,72 +107,72 @@
 
     <section class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <article class="glass rounded-2xl p-4 md:p-5">
-        <p class="text-slate-400 text-xs uppercase tracking-widest">Total Views</p>
+        <p id="kpiLabelViews" class="text-slate-400 text-xs uppercase tracking-widest">Total Views</p>
         <p id="kpiViews" class="text-3xl font-extrabold mt-2">-</p>
       </article>
       <article class="glass rounded-2xl p-4 md:p-5">
-        <p class="text-slate-400 text-xs uppercase tracking-widest">Watch Time</p>
+        <p id="kpiLabelWatch" class="text-slate-400 text-xs uppercase tracking-widest">Watch Time</p>
         <p id="kpiWatch" class="text-3xl font-extrabold mt-2">-</p>
       </article>
       <article class="glass rounded-2xl p-4 md:p-5">
-        <p class="text-slate-400 text-xs uppercase tracking-widest">Impressions</p>
+        <p id="kpiLabelImpressions" class="text-slate-400 text-xs uppercase tracking-widest">Impressions</p>
         <p id="kpiImpressions" class="text-3xl font-extrabold mt-2">-</p>
       </article>
       <article class="glass rounded-2xl p-4 md:p-5">
-        <p class="text-slate-400 text-xs uppercase tracking-widest">Subscribers Gained</p>
+        <p id="kpiLabelSubs" class="text-slate-400 text-xs uppercase tracking-widest">Subscribers Gained</p>
         <p id="kpiSubs" class="text-3xl font-extrabold mt-2">-</p>
       </article>
     </section>
 
     <section class="grid lg:grid-cols-2 gap-4">
       <article class="glass rounded-2xl p-4 md:p-5">
-        <h2 class="font-bold text-lg">Views by Channel</h2>
+        <h2 id="chartTitleViews" class="font-bold text-lg">Views by Channel</h2>
         <div id="chartViews" class="chart"></div>
       </article>
       <article class="glass rounded-2xl p-4 md:p-5">
-        <h2 class="font-bold text-lg">Watch Time by Channel</h2>
+        <h2 id="chartTitleWatch" class="font-bold text-lg">Watch Time by Channel</h2>
         <div id="chartWatch" class="chart"></div>
       </article>
       <article class="glass rounded-2xl p-4 md:p-5">
-        <h2 class="font-bold text-lg">Portfolio Language Reach</h2>
+        <h2 id="chartTitleLang" class="font-bold text-lg">Portfolio Language Reach</h2>
         <div id="chartLang" class="chart"></div>
       </article>
       <article class="glass rounded-2xl p-4 md:p-5">
-        <h2 class="font-bold text-lg">Impressions CTR by Channel</h2>
+        <h2 id="chartTitleCtr" class="font-bold text-lg">Impressions CTR by Channel</h2>
         <div id="chartCtr" class="chart"></div>
       </article>
     </section>
 
     <section class="glass rounded-2xl p-4 md:p-6">
       <div class="flex items-center justify-between gap-4 flex-wrap">
-        <h2 class="font-bold text-xl">Channel Snapshot</h2>
-        <p class="text-slate-300 text-sm">Key channel metrics at portfolio level.</p>
+        <h2 id="snapshotTitle" class="font-bold text-xl">Channel Snapshot</h2>
+        <p id="snapshotSubtitle" class="text-slate-300 text-sm">Key channel metrics at portfolio level.</p>
       </div>
       <div id="channelCards" class="grid md:grid-cols-2 xl:grid-cols-4 gap-4 mt-4"></div>
     </section>
 
     <section class="glass rounded-2xl p-5 md:p-7">
-      <h2 class="font-bold text-2xl">Partnership Package</h2>
-      <p class="text-slate-300 mt-2 max-w-4xl">
+      <h2 id="packageTitle" class="font-bold text-2xl">Partnership Package</h2>
+      <p id="packageSubtitle" class="text-slate-300 mt-2 max-w-4xl">
         One clear format, one execution model, one commercial flow. Brand integrations are placed in regular uploads,
         keeping delivery consistent and easy to scale across campaigns.
       </p>
 
       <div class="grid md:grid-cols-2 gap-5 mt-5">
         <div class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-4">
-          <h3 class="font-semibold text-cyanx">What you get</h3>
+          <h3 id="packageGetTitle" class="font-semibold text-cyanx">What you get</h3>
           <ul class="mt-2 text-sm text-slate-300 space-y-2">
-            <li>- Brand integration placed in a regular video upload.</li>
-            <li>- Messaging aligned to brief and campaign objective.</li>
-            <li>- Campaign-ready execution with clear scope and timeline.</li>
+            <li id="packageGetItem1">- Brand integration placed in a regular video upload.</li>
+            <li id="packageGetItem2">- Messaging aligned to brief and campaign objective.</li>
+            <li id="packageGetItem3">- Campaign-ready execution with clear scope and timeline.</li>
           </ul>
         </div>
         <div class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-4">
-          <h3 class="font-semibold text-cyanx">Why this works for advertisers</h3>
+          <h3 id="packageWhyTitle" class="font-semibold text-cyanx">Why this works for advertisers</h3>
           <ul class="mt-2 text-sm text-slate-300 space-y-2">
-            <li>- Audience attention in familiar content environment.</li>
-            <li>- Predictable format for repeat campaigns and media planning.</li>
-            <li>- Easier creative approval with a single standardized model.</li>
+            <li id="packageWhyItem1">- Audience attention in familiar content environment.</li>
+            <li id="packageWhyItem2">- Predictable format for repeat campaigns and media planning.</li>
+            <li id="packageWhyItem3">- Easier creative approval with a single standardized model.</li>
           </ul>
         </div>
       </div>
@@ -169,13 +180,13 @@
 
     <footer class="glass rounded-2xl p-5 md:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div>
-        <p class="text-slate-300 text-sm">Contact</p>
+        <p id="contactTitle" class="text-slate-300 text-sm">Contact</p>
         <p class="font-semibold">alborghettibusiness@gmail.com</p>
         <a class="text-cyanx text-sm" href="https://www.linkedin.com/in/daniel-alborghetti/" target="_blank" rel="noreferrer">
           linkedin.com/in/daniel-alborghetti/
         </a>
       </div>
-      <button onclick="window.print()" class="no-print px-4 py-2 rounded-xl bg-cyanx text-ink font-semibold hover:opacity-90 transition">
+      <button id="printButton" onclick="window.print()" class="no-print px-4 py-2 rounded-xl bg-cyanx text-ink font-semibold hover:opacity-90 transition">
         Export / Print PDF
       </button>
     </footer>
@@ -185,7 +196,7 @@
     const channels = [
       {
         name: "Reddicuentos",
-        language: "Spanish",
+        languageKey: "es",
         views: 719680105,
         watchHours: 21691560.6,
         impressions: 332528650,
@@ -194,7 +205,7 @@
       },
       {
         name: "O Cara do Reddit",
-        language: "Portuguese (BR)",
+        languageKey: "pt",
         views: 326727431,
         watchHours: 11580038.7,
         impressions: 276828618,
@@ -203,7 +214,7 @@
       },
       {
         name: "Chroniques Cachees",
-        language: "French",
+        languageKey: "fr",
         views: 109564907,
         watchHours: 3096352.8,
         impressions: 50909657,
@@ -212,7 +223,7 @@
       },
       {
         name: "Stille Stories",
-        language: "German",
+        languageKey: "de",
         views: 99657919,
         watchHours: 2779460.3,
         impressions: 39509593,
@@ -221,32 +232,165 @@
       },
     ];
 
+    const locales = {
+      en: "en-US",
+      pt: "pt-BR",
+      es: "es-ES",
+    };
+
+    const i18n = {
+      en: {
+        langLabel: "Language",
+        heroBadge: "Media Kit",
+        heroTitle: "Multilingual YouTube <span class='text-cyanx'>Brand Partnerships</span>",
+        heroSubtitle: "Founder-led channel portfolio with audience across PT-BR, ES, FR, and DE. Partnership model centered on integrated placements in regular channel uploads.",
+        founderRole: "Founder & Channel Owner",
+        founderPitch: "Brand partnerships for multilingual YouTube inventory",
+        emailLabel: "Email:",
+        linkedinLabel: "LinkedIn:",
+        kpiViews: "Total Views",
+        kpiWatch: "Watch Time",
+        kpiImpressions: "Impressions",
+        kpiSubs: "Subscribers Gained",
+        chartViews: "Views by Channel",
+        chartWatch: "Watch Time by Channel",
+        chartLang: "Portfolio Language Reach",
+        chartCtr: "Impressions CTR by Channel",
+        snapshotTitle: "Channel Snapshot",
+        snapshotSubtitle: "Key channel metrics at portfolio level.",
+        packageTitle: "Partnership Package",
+        packageSubtitle: "One clear format, one execution model, one commercial flow. Brand integrations are placed in regular uploads, keeping delivery consistent and easy to scale across campaigns.",
+        packageGetTitle: "What you get",
+        packageGetItem1: "- Brand integration placed in a regular video upload.",
+        packageGetItem2: "- Messaging aligned to brief and campaign objective.",
+        packageGetItem3: "- Campaign-ready execution with clear scope and timeline.",
+        packageWhyTitle: "Why this works for advertisers",
+        packageWhyItem1: "- Audience attention in familiar content environment.",
+        packageWhyItem2: "- Predictable format for repeat campaigns and media planning.",
+        packageWhyItem3: "- Easier creative approval with a single standardized model.",
+        contactTitle: "Contact",
+        printButton: "Export / Print PDF",
+        yViews: "Views (M)",
+        yWatch: "Watch Time (M h)",
+        yCtr: "CTR (%)",
+        pieSeries: "Language Reach",
+        cardViews: "Views",
+        cardWatch: "Watch Time",
+        cardImpressions: "Impressions",
+        cardCtr: "CTR",
+        hoursSuffix: " h",
+        languages: {
+          pt: "Portuguese (BR)",
+          es: "Spanish",
+          fr: "French",
+          de: "German",
+        },
+      },
+      pt: {
+        langLabel: "Idioma",
+        heroBadge: "Media Kit",
+        heroTitle: "YouTube Multilingue <span class='text-cyanx'>Parcerias com Marcas</span>",
+        heroSubtitle: "Portfolio de canais liderado por fundador, com audiencia em PT-BR, ES, FR e DE. Modelo de parceria focado em integracoes inseridas em uploads regulares dos canais.",
+        founderRole: "Fundador e Dono dos Canais",
+        founderPitch: "Parcerias de marca para inventario de YouTube multilingue",
+        emailLabel: "Email:",
+        linkedinLabel: "LinkedIn:",
+        kpiViews: "Visualizacoes Totais",
+        kpiWatch: "Tempo de Exibicao",
+        kpiImpressions: "Impressoes",
+        kpiSubs: "Inscritos Ganhos",
+        chartViews: "Visualizacoes por Canal",
+        chartWatch: "Tempo de Exibicao por Canal",
+        chartLang: "Alcance por Idioma do Portfolio",
+        chartCtr: "CTR de Impressoes por Canal",
+        snapshotTitle: "Resumo dos Canais",
+        snapshotSubtitle: "Principais metricas de cada canal no portfolio.",
+        packageTitle: "Pacote de Parceria",
+        packageSubtitle: "Um formato claro, um modelo de execucao, um fluxo comercial. As integracoes de marca entram em uploads regulares, mantendo entrega consistente e escalavel.",
+        packageGetTitle: "O que voce recebe",
+        packageGetItem1: "- Integracao de marca inserida em um upload regular do canal.",
+        packageGetItem2: "- Mensagem alinhada ao briefing e objetivo da campanha.",
+        packageGetItem3: "- Execucao pronta para campanha, com escopo e prazo claros.",
+        packageWhyTitle: "Por que funciona para anunciantes",
+        packageWhyItem1: "- Atencao da audiencia em ambiente de conteudo familiar.",
+        packageWhyItem2: "- Formato previsivel para campanhas recorrentes e planejamento de midia.",
+        packageWhyItem3: "- Aprovacao criativa mais facil com modelo unico padronizado.",
+        contactTitle: "Contato",
+        printButton: "Exportar / Imprimir PDF",
+        yViews: "Visualizacoes (M)",
+        yWatch: "Tempo de Exibicao (M h)",
+        yCtr: "CTR (%)",
+        pieSeries: "Alcance por Idioma",
+        cardViews: "Visualizacoes",
+        cardWatch: "Tempo de Exibicao",
+        cardImpressions: "Impressoes",
+        cardCtr: "CTR",
+        hoursSuffix: " h",
+        languages: {
+          pt: "Portugues (BR)",
+          es: "Espanhol",
+          fr: "Frances",
+          de: "Alemao",
+        },
+      },
+      es: {
+        langLabel: "Idioma",
+        heroBadge: "Media Kit",
+        heroTitle: "YouTube Multilingue <span class='text-cyanx'>Alianzas con Marcas</span>",
+        heroSubtitle: "Portafolio de canales liderado por fundador, con audiencia en PT-BR, ES, FR y DE. Modelo de alianza enfocado en integraciones dentro de uploads regulares.",
+        founderRole: "Fundador y Propietario de Canales",
+        founderPitch: "Alianzas de marca para inventario multilingue en YouTube",
+        emailLabel: "Email:",
+        linkedinLabel: "LinkedIn:",
+        kpiViews: "Vistas Totales",
+        kpiWatch: "Tiempo de Visualizacion",
+        kpiImpressions: "Impresiones",
+        kpiSubs: "Suscriptores Ganados",
+        chartViews: "Vistas por Canal",
+        chartWatch: "Tiempo de Visualizacion por Canal",
+        chartLang: "Alcance por Idioma del Portafolio",
+        chartCtr: "CTR de Impresiones por Canal",
+        snapshotTitle: "Resumen de Canales",
+        snapshotSubtitle: "Metricas clave de cada canal a nivel de portafolio.",
+        packageTitle: "Paquete de Alianza",
+        packageSubtitle: "Un formato claro, un modelo de ejecucion y un flujo comercial. Las integraciones de marca se insertan en uploads regulares, manteniendo una entrega consistente y escalable.",
+        packageGetTitle: "Que recibes",
+        packageGetItem1: "- Integracion de marca dentro de un upload regular del canal.",
+        packageGetItem2: "- Mensaje alineado al brief y al objetivo de la campana.",
+        packageGetItem3: "- Ejecucion lista para campana, con alcance y plazos claros.",
+        packageWhyTitle: "Por que funciona para anunciantes",
+        packageWhyItem1: "- Atencion de audiencia en un entorno de contenido familiar.",
+        packageWhyItem2: "- Formato predecible para campanas repetibles y media planning.",
+        packageWhyItem3: "- Aprobacion creativa mas simple con un modelo estandar.",
+        contactTitle: "Contacto",
+        printButton: "Exportar / Imprimir PDF",
+        yViews: "Vistas (M)",
+        yWatch: "Tiempo de Visualizacion (M h)",
+        yCtr: "CTR (%)",
+        pieSeries: "Alcance por Idioma",
+        cardViews: "Vistas",
+        cardWatch: "Tiempo de Visualizacion",
+        cardImpressions: "Impresiones",
+        cardCtr: "CTR",
+        hoursSuffix: " h",
+        languages: {
+          pt: "Portugues (BR)",
+          es: "Espanol",
+          fr: "Frances",
+          de: "Aleman",
+        },
+      },
+    };
+
     const totalViews = channels.reduce((a, c) => a + c.views, 0);
     const totalWatchHours = channels.reduce((a, c) => a + c.watchHours, 0);
     const totalImpressions = channels.reduce((a, c) => a + c.impressions, 0);
     const totalSubscribers = channels.reduce((a, c) => a + c.subscribers, 0);
 
-    const fmtInt = new Intl.NumberFormat("en-US");
-    const compact = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
-
-    document.getElementById("kpiViews").textContent = compact.format(totalViews);
-    document.getElementById("kpiWatch").textContent = compact.format(totalWatchHours) + " h";
-    document.getElementById("kpiImpressions").textContent = compact.format(totalImpressions);
-    document.getElementById("kpiSubs").textContent = compact.format(totalSubscribers);
-
-    const channelCards = document.getElementById("channelCards");
-    channelCards.innerHTML = channels.map((c) => `
-      <article class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-4">
-        <p class="text-xs text-slate-400 uppercase tracking-widest">${c.language}</p>
-        <h3 class="font-semibold text-base mt-1">${c.name}</h3>
-        <ul class="text-sm text-slate-300 mt-3 space-y-1">
-          <li><span class="text-slate-400">Views:</span> ${fmtInt.format(c.views)}</li>
-          <li><span class="text-slate-400">Watch Time:</span> ${fmtInt.format(Math.round(c.watchHours))} h</li>
-          <li><span class="text-slate-400">Impressions:</span> ${fmtInt.format(c.impressions)}</li>
-          <li><span class="text-slate-400">CTR:</span> ${c.ctr.toFixed(2)}%</li>
-        </ul>
-      </article>
-    `).join("");
+    const viewsChart = echarts.init(document.getElementById("chartViews"));
+    const watchChart = echarts.init(document.getElementById("chartWatch"));
+    const ctrChart = echarts.init(document.getElementById("chartCtr"));
+    const langChart = echarts.init(document.getElementById("chartLang"));
 
     const chartBase = {
       backgroundColor: "transparent",
@@ -271,54 +415,164 @@
       series: [{ type: "bar", barWidth: 42, itemStyle: { borderRadius: [8, 8, 0, 0] } }],
     };
 
-    const names = channels.map((c) => c.name);
-    const viewsM = channels.map((c) => +(c.views / 1e6).toFixed(1));
-    const watchM = channels.map((c) => +(c.watchHours / 1e6).toFixed(2));
-    const ctr = channels.map((c) => c.ctr);
+    function setText(id, value, asHtml = false) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (asHtml) {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
 
-    const viewsChart = echarts.init(document.getElementById("chartViews"));
-    viewsChart.setOption({
-      ...chartBase,
-      xAxis: { ...chartBase.xAxis, data: names },
-      yAxis: { ...chartBase.yAxis, name: "Views (M)" },
-      series: [{ ...chartBase.series[0], data: viewsM, itemStyle: { color: "#3b82f6", borderRadius: [8, 8, 0, 0] } }],
+    function getFormatters(lang) {
+      const locale = locales[lang] || "en-US";
+      return {
+        intFmt: new Intl.NumberFormat(locale),
+        compactFmt: new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 }),
+      };
+    }
+
+    function updateStaticTexts(lang) {
+      const t = i18n[lang];
+      setText("langLabel", t.langLabel);
+      setText("heroBadge", t.heroBadge);
+      setText("heroTitle", t.heroTitle, true);
+      setText("heroSubtitle", t.heroSubtitle);
+      setText("founderRole", t.founderRole);
+      setText("founderPitch", t.founderPitch);
+      setText("emailLabel", t.emailLabel);
+      setText("linkedinLabel", t.linkedinLabel);
+      setText("kpiLabelViews", t.kpiViews);
+      setText("kpiLabelWatch", t.kpiWatch);
+      setText("kpiLabelImpressions", t.kpiImpressions);
+      setText("kpiLabelSubs", t.kpiSubs);
+      setText("chartTitleViews", t.chartViews);
+      setText("chartTitleWatch", t.chartWatch);
+      setText("chartTitleLang", t.chartLang);
+      setText("chartTitleCtr", t.chartCtr);
+      setText("snapshotTitle", t.snapshotTitle);
+      setText("snapshotSubtitle", t.snapshotSubtitle);
+      setText("packageTitle", t.packageTitle);
+      setText("packageSubtitle", t.packageSubtitle);
+      setText("packageGetTitle", t.packageGetTitle);
+      setText("packageGetItem1", t.packageGetItem1);
+      setText("packageGetItem2", t.packageGetItem2);
+      setText("packageGetItem3", t.packageGetItem3);
+      setText("packageWhyTitle", t.packageWhyTitle);
+      setText("packageWhyItem1", t.packageWhyItem1);
+      setText("packageWhyItem2", t.packageWhyItem2);
+      setText("packageWhyItem3", t.packageWhyItem3);
+      setText("contactTitle", t.contactTitle);
+      setText("printButton", t.printButton);
+    }
+
+    function updateKpis(lang) {
+      const t = i18n[lang];
+      const { compactFmt } = getFormatters(lang);
+      document.getElementById("kpiViews").textContent = compactFmt.format(totalViews);
+      document.getElementById("kpiWatch").textContent = compactFmt.format(totalWatchHours) + t.hoursSuffix;
+      document.getElementById("kpiImpressions").textContent = compactFmt.format(totalImpressions);
+      document.getElementById("kpiSubs").textContent = compactFmt.format(totalSubscribers);
+    }
+
+    function updateChannelCards(lang) {
+      const t = i18n[lang];
+      const { intFmt } = getFormatters(lang);
+      const cards = channels.map((c) => {
+        const languageName = t.languages[c.languageKey] || c.languageKey.toUpperCase();
+        return `
+          <article class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-4">
+            <p class="text-xs text-slate-400 uppercase tracking-widest">${languageName}</p>
+            <h3 class="font-semibold text-base mt-1">${c.name}</h3>
+            <ul class="text-sm text-slate-300 mt-3 space-y-1">
+              <li><span class="text-slate-400">${t.cardViews}:</span> ${intFmt.format(c.views)}</li>
+              <li><span class="text-slate-400">${t.cardWatch}:</span> ${intFmt.format(Math.round(c.watchHours))}${t.hoursSuffix}</li>
+              <li><span class="text-slate-400">${t.cardImpressions}:</span> ${intFmt.format(c.impressions)}</li>
+              <li><span class="text-slate-400">${t.cardCtr}:</span> ${c.ctr.toFixed(2)}%</li>
+            </ul>
+          </article>
+        `;
+      }).join("");
+      document.getElementById("channelCards").innerHTML = cards;
+    }
+
+    function updateCharts(lang) {
+      const t = i18n[lang];
+      const names = channels.map((c) => c.name);
+      const viewsM = channels.map((c) => +(c.views / 1e6).toFixed(1));
+      const watchM = channels.map((c) => +(c.watchHours / 1e6).toFixed(2));
+      const ctr = channels.map((c) => c.ctr);
+
+      viewsChart.setOption({
+        ...chartBase,
+        xAxis: { ...chartBase.xAxis, data: names },
+        yAxis: { ...chartBase.yAxis, name: t.yViews },
+        series: [{ ...chartBase.series[0], data: viewsM, itemStyle: { color: "#3b82f6", borderRadius: [8, 8, 0, 0] } }],
+      });
+
+      watchChart.setOption({
+        ...chartBase,
+        xAxis: { ...chartBase.xAxis, data: names },
+        yAxis: { ...chartBase.yAxis, name: t.yWatch },
+        series: [{ ...chartBase.series[0], data: watchM, itemStyle: { color: "#22d3ee", borderRadius: [8, 8, 0, 0] } }],
+      });
+
+      ctrChart.setOption({
+        ...chartBase,
+        xAxis: { ...chartBase.xAxis, data: names },
+        yAxis: { ...chartBase.yAxis, name: t.yCtr },
+        series: [{ ...chartBase.series[0], data: ctr, itemStyle: { color: "#22c55e", borderRadius: [8, 8, 0, 0] } }],
+      });
+
+      langChart.setOption({
+        backgroundColor: "transparent",
+        tooltip: { trigger: "item", backgroundColor: "#0b1a2d", borderColor: "#2a4668", textStyle: { color: "#e2e8f0" } },
+        legend: { bottom: 0, textStyle: { color: "#c8d6eb" } },
+        series: [
+          {
+            name: t.pieSeries,
+            type: "pie",
+            radius: ["48%", "72%"],
+            center: ["50%", "44%"],
+            label: { color: "#dbeafe", formatter: "{b}\n{d}%" },
+            labelLine: { lineStyle: { color: "#8aa4c5" } },
+            itemStyle: { borderColor: "#06111f", borderWidth: 2 },
+            data: channels.map((c) => ({ name: t.languages[c.languageKey], value: c.views })),
+            color: ["#3b82f6", "#22d3ee", "#22c55e", "#f59e0b"],
+          },
+        ],
+      });
+    }
+
+    function updateLangButtons(lang) {
+      document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
+        const isActive = btn.getAttribute("data-lang") === lang;
+        btn.style.backgroundColor = isActive ? "#22d3ee" : "transparent";
+        btn.style.borderColor = isActive ? "#22d3ee" : "rgba(71, 85, 105, 0.7)";
+        btn.style.color = isActive ? "#06111f" : "#e2e8f0";
+      });
+    }
+
+    function applyLanguage(lang) {
+      const nextLang = i18n[lang] ? lang : "en";
+      document.documentElement.lang = nextLang;
+      updateStaticTexts(nextLang);
+      updateKpis(nextLang);
+      updateChannelCards(nextLang);
+      updateCharts(nextLang);
+      updateLangButtons(nextLang);
+      localStorage.setItem("mediaKitLang", nextLang);
+    }
+
+    document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        applyLanguage(btn.getAttribute("data-lang"));
+      });
     });
 
-    const watchChart = echarts.init(document.getElementById("chartWatch"));
-    watchChart.setOption({
-      ...chartBase,
-      xAxis: { ...chartBase.xAxis, data: names },
-      yAxis: { ...chartBase.yAxis, name: "Watch Time (M h)" },
-      series: [{ ...chartBase.series[0], data: watchM, itemStyle: { color: "#22d3ee", borderRadius: [8, 8, 0, 0] } }],
-    });
-
-    const ctrChart = echarts.init(document.getElementById("chartCtr"));
-    ctrChart.setOption({
-      ...chartBase,
-      xAxis: { ...chartBase.xAxis, data: names },
-      yAxis: { ...chartBase.yAxis, name: "CTR (%)" },
-      series: [{ ...chartBase.series[0], data: ctr, itemStyle: { color: "#22c55e", borderRadius: [8, 8, 0, 0] } }],
-    });
-
-    const langChart = echarts.init(document.getElementById("chartLang"));
-    langChart.setOption({
-      backgroundColor: "transparent",
-      tooltip: { trigger: "item", backgroundColor: "#0b1a2d", borderColor: "#2a4668", textStyle: { color: "#e2e8f0" } },
-      legend: { bottom: 0, textStyle: { color: "#c8d6eb" } },
-      series: [
-        {
-          name: "Language Reach",
-          type: "pie",
-          radius: ["48%", "72%"],
-          center: ["50%", "44%"],
-          label: { color: "#dbeafe", formatter: "{b}\n{d}%" },
-          labelLine: { lineStyle: { color: "#8aa4c5" } },
-          itemStyle: { borderColor: "#06111f", borderWidth: 2 },
-          data: channels.map((c) => ({ name: c.language, value: c.views })),
-          color: ["#3b82f6", "#22d3ee", "#22c55e", "#f59e0b"],
-        },
-      ],
-    });
+    const savedLang = localStorage.getItem("mediaKitLang");
+    applyLanguage(savedLang || "en");
 
     window.addEventListener("resize", () => {
       viewsChart.resize();
@@ -329,7 +583,3 @@
   </script>
 </body>
 </html>
-
-
-
-
