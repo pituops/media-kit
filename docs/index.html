@@ -1,0 +1,334 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Kit | Daniel Alborghetti</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+          },
+          boxShadow: {
+            glow: "0 10px 40px rgba(14, 165, 233, 0.25)",
+          },
+          colors: {
+            ink: "#06111f",
+            panel: "#0b1a2d",
+            line: "#16314f",
+            cyanx: "#22d3ee",
+            bluex: "#3b82f6",
+            emeraldx: "#22c55e",
+            amberx: "#f59e0b",
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .glass {
+      background: linear-gradient(145deg, rgba(15, 32, 55, 0.82), rgba(6, 16, 30, 0.82));
+      border: 1px solid rgba(71, 103, 143, 0.35);
+      backdrop-filter: blur(8px);
+    }
+    .mesh-bg {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.18), transparent 35%),
+        radial-gradient(circle at 85% 10%, rgba(59, 130, 246, 0.20), transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(34, 197, 94, 0.14), transparent 35%),
+        #030b16;
+    }
+    .chart {
+      width: 100%;
+      height: 320px;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #fff !important; }
+      .glass { border: 1px solid #e5e7eb; background: #fff !important; }
+    }
+  </style>
+</head>
+<body class="mesh-bg text-slate-100 min-h-screen">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-8 md:py-12 space-y-8">
+    <header class="glass rounded-3xl p-6 md:p-8 shadow-glow">
+      <div class="grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
+        <div>
+          <p class="text-cyanx text-xs md:text-sm tracking-[0.22em] uppercase font-semibold">Media Kit</p>
+          <h1 class="text-3xl md:text-5xl font-extrabold mt-2 leading-tight">
+            Multilingual YouTube
+            <span class="text-cyanx">Brand Partnerships</span>
+          </h1>
+          <p class="text-slate-300 mt-4 max-w-2xl text-sm md:text-base">
+            Founder-led channel portfolio with audience across PT-BR, ES, FR, and DE.
+            Partnership model centered on integrated placements in regular channel uploads.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyanx/20 text-cyanx border border-cyanx/30">PT-BR</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-bluex/20 text-bluex border border-bluex/30">ES</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emeraldx/20 text-emeraldx border border-emeraldx/30">FR</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amberx/20 text-amberx border border-amberx/30">DE</span>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-4 md:p-5">
+          <div class="flex items-center gap-4">
+            <img src="./foto_minha.jpg" alt="Daniel Alborghetti" class="w-24 h-24 md:w-28 md:h-28 object-cover rounded-2xl border border-slate-600/60" />
+            <div>
+              <p class="text-slate-300 text-xs uppercase tracking-wider">Founder & Channel Owner</p>
+              <p class="font-bold text-lg leading-tight mt-1">Daniel Alborghetti</p>
+              <p class="text-slate-300 text-sm mt-1">Brand partnerships for multilingual YouTube inventory</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-700/60 text-sm space-y-1">
+            <p><span class="text-slate-400">Email:</span> alborghettibusiness@gmail.com</p>
+            <p><span class="text-slate-400">LinkedIn:</span> linkedin.com/in/daniel-alborghetti</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <article class="glass rounded-2xl p-4 md:p-5">
+        <p class="text-slate-400 text-xs uppercase tracking-widest">Total Views</p>
+        <p id="kpiViews" class="text-3xl font-extrabold mt-2">-</p>
+      </article>
+      <article class="glass rounded-2xl p-4 md:p-5">
+        <p class="text-slate-400 text-xs uppercase tracking-widest">Watch Time</p>
+        <p id="kpiWatch" class="text-3xl font-extrabold mt-2">-</p>
+      </article>
+      <article class="glass rounded-2xl p-4 md:p-5">
+        <p class="text-slate-400 text-xs uppercase tracking-widest">Impressions</p>
+        <p id="kpiImpressions" class="text-3xl font-extrabold mt-2">-</p>
+      </article>
+      <article class="glass rounded-2xl p-4 md:p-5">
+        <p class="text-slate-400 text-xs uppercase tracking-widest">Subscribers Gained</p>
+        <p id="kpiSubs" class="text-3xl font-extrabold mt-2">-</p>
+      </article>
+    </section>
+
+    <section class="grid lg:grid-cols-2 gap-4">
+      <article class="glass rounded-2xl p-4 md:p-5">
+        <h2 class="font-bold text-lg">Views by Channel</h2>
+        <div id="chartViews" class="chart"></div>
+      </article>
+      <article class="glass rounded-2xl p-4 md:p-5">
+        <h2 class="font-bold text-lg">Watch Time by Channel</h2>
+        <div id="chartWatch" class="chart"></div>
+      </article>
+      <article class="glass rounded-2xl p-4 md:p-5">
+        <h2 class="font-bold text-lg">Portfolio Language Reach</h2>
+        <div id="chartLang" class="chart"></div>
+      </article>
+      <article class="glass rounded-2xl p-4 md:p-5">
+        <h2 class="font-bold text-lg">Impressions CTR by Channel</h2>
+        <div id="chartCtr" class="chart"></div>
+      </article>
+    </section>
+
+    <section class="glass rounded-2xl p-4 md:p-6">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <h2 class="font-bold text-xl">Channel Snapshot</h2>
+        <p class="text-slate-300 text-sm">Key channel metrics at portfolio level.</p>
+      </div>
+      <div id="channelCards" class="grid md:grid-cols-2 xl:grid-cols-4 gap-4 mt-4"></div>
+    </section>
+
+    <section class="glass rounded-2xl p-5 md:p-7">
+      <h2 class="font-bold text-2xl">Partnership Package</h2>
+      <p class="text-slate-300 mt-2 max-w-4xl">
+        One clear format, one execution model, one commercial flow. Brand integrations are placed in regular uploads,
+        keeping delivery consistent and easy to scale across campaigns.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-5 mt-5">
+        <div class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-4">
+          <h3 class="font-semibold text-cyanx">What you get</h3>
+          <ul class="mt-2 text-sm text-slate-300 space-y-2">
+            <li>- Brand integration placed in a regular video upload.</li>
+            <li>- Messaging aligned to brief and campaign objective.</li>
+            <li>- Campaign-ready execution with clear scope and timeline.</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-4">
+          <h3 class="font-semibold text-cyanx">Why this works for advertisers</h3>
+          <ul class="mt-2 text-sm text-slate-300 space-y-2">
+            <li>- Audience attention in familiar content environment.</li>
+            <li>- Predictable format for repeat campaigns and media planning.</li>
+            <li>- Easier creative approval with a single standardized model.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="glass rounded-2xl p-5 md:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <p class="text-slate-300 text-sm">Contact</p>
+        <p class="font-semibold">alborghettibusiness@gmail.com</p>
+        <a class="text-cyanx text-sm" href="https://www.linkedin.com/in/daniel-alborghetti/" target="_blank" rel="noreferrer">
+          linkedin.com/in/daniel-alborghetti/
+        </a>
+      </div>
+      <button onclick="window.print()" class="no-print px-4 py-2 rounded-xl bg-cyanx text-ink font-semibold hover:opacity-90 transition">
+        Export / Print PDF
+      </button>
+    </footer>
+  </div>
+
+  <script>
+    const channels = [
+      {
+        name: "Reddicuentos",
+        language: "Spanish",
+        views: 719680105,
+        watchHours: 21691560.6,
+        impressions: 332528650,
+        ctr: 7.79,
+        subscribers: 562431,
+      },
+      {
+        name: "O Cara do Reddit",
+        language: "Portuguese (BR)",
+        views: 326727431,
+        watchHours: 11580038.7,
+        impressions: 276828618,
+        ctr: 7.53,
+        subscribers: 391614,
+      },
+      {
+        name: "Chroniques Cachees",
+        language: "French",
+        views: 109564907,
+        watchHours: 3096352.8,
+        impressions: 50909657,
+        ctr: 8.43,
+        subscribers: 85658,
+      },
+      {
+        name: "Stille Stories",
+        language: "German",
+        views: 99657919,
+        watchHours: 2779460.3,
+        impressions: 39509593,
+        ctr: 7.51,
+        subscribers: 39885,
+      },
+    ];
+
+    const totalViews = channels.reduce((a, c) => a + c.views, 0);
+    const totalWatchHours = channels.reduce((a, c) => a + c.watchHours, 0);
+    const totalImpressions = channels.reduce((a, c) => a + c.impressions, 0);
+    const totalSubscribers = channels.reduce((a, c) => a + c.subscribers, 0);
+
+    const fmtInt = new Intl.NumberFormat("en-US");
+    const compact = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
+
+    document.getElementById("kpiViews").textContent = compact.format(totalViews);
+    document.getElementById("kpiWatch").textContent = compact.format(totalWatchHours) + " h";
+    document.getElementById("kpiImpressions").textContent = compact.format(totalImpressions);
+    document.getElementById("kpiSubs").textContent = compact.format(totalSubscribers);
+
+    const channelCards = document.getElementById("channelCards");
+    channelCards.innerHTML = channels.map((c) => `
+      <article class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-4">
+        <p class="text-xs text-slate-400 uppercase tracking-widest">${c.language}</p>
+        <h3 class="font-semibold text-base mt-1">${c.name}</h3>
+        <ul class="text-sm text-slate-300 mt-3 space-y-1">
+          <li><span class="text-slate-400">Views:</span> ${fmtInt.format(c.views)}</li>
+          <li><span class="text-slate-400">Watch Time:</span> ${fmtInt.format(Math.round(c.watchHours))} h</li>
+          <li><span class="text-slate-400">Impressions:</span> ${fmtInt.format(c.impressions)}</li>
+          <li><span class="text-slate-400">CTR:</span> ${c.ctr.toFixed(2)}%</li>
+        </ul>
+      </article>
+    `).join("");
+
+    const chartBase = {
+      backgroundColor: "transparent",
+      textStyle: { color: "#d7e3f4", fontFamily: "Plus Jakarta Sans, sans-serif" },
+      grid: { left: 40, right: 16, top: 36, bottom: 40, containLabel: true },
+      tooltip: {
+        trigger: "axis",
+        backgroundColor: "#0b1a2d",
+        borderColor: "#2a4668",
+        textStyle: { color: "#e2e8f0" },
+      },
+      xAxis: {
+        type: "category",
+        axisLabel: { color: "#c8d6eb", interval: 0, fontSize: 11 },
+        axisLine: { lineStyle: { color: "#34506f" } },
+      },
+      yAxis: {
+        type: "value",
+        axisLabel: { color: "#c8d6eb" },
+        splitLine: { lineStyle: { color: "rgba(99,126,156,0.22)" } },
+      },
+      series: [{ type: "bar", barWidth: 42, itemStyle: { borderRadius: [8, 8, 0, 0] } }],
+    };
+
+    const names = channels.map((c) => c.name);
+    const viewsM = channels.map((c) => +(c.views / 1e6).toFixed(1));
+    const watchM = channels.map((c) => +(c.watchHours / 1e6).toFixed(2));
+    const ctr = channels.map((c) => c.ctr);
+
+    const viewsChart = echarts.init(document.getElementById("chartViews"));
+    viewsChart.setOption({
+      ...chartBase,
+      xAxis: { ...chartBase.xAxis, data: names },
+      yAxis: { ...chartBase.yAxis, name: "Views (M)" },
+      series: [{ ...chartBase.series[0], data: viewsM, itemStyle: { color: "#3b82f6", borderRadius: [8, 8, 0, 0] } }],
+    });
+
+    const watchChart = echarts.init(document.getElementById("chartWatch"));
+    watchChart.setOption({
+      ...chartBase,
+      xAxis: { ...chartBase.xAxis, data: names },
+      yAxis: { ...chartBase.yAxis, name: "Watch Time (M h)" },
+      series: [{ ...chartBase.series[0], data: watchM, itemStyle: { color: "#22d3ee", borderRadius: [8, 8, 0, 0] } }],
+    });
+
+    const ctrChart = echarts.init(document.getElementById("chartCtr"));
+    ctrChart.setOption({
+      ...chartBase,
+      xAxis: { ...chartBase.xAxis, data: names },
+      yAxis: { ...chartBase.yAxis, name: "CTR (%)" },
+      series: [{ ...chartBase.series[0], data: ctr, itemStyle: { color: "#22c55e", borderRadius: [8, 8, 0, 0] } }],
+    });
+
+    const langChart = echarts.init(document.getElementById("chartLang"));
+    langChart.setOption({
+      backgroundColor: "transparent",
+      tooltip: { trigger: "item", backgroundColor: "#0b1a2d", borderColor: "#2a4668", textStyle: { color: "#e2e8f0" } },
+      legend: { bottom: 0, textStyle: { color: "#c8d6eb" } },
+      series: [
+        {
+          name: "Language Reach",
+          type: "pie",
+          radius: ["48%", "72%"],
+          center: ["50%", "44%"],
+          label: { color: "#dbeafe", formatter: "{b}\n{d}%" },
+          labelLine: { lineStyle: { color: "#8aa4c5" } },
+          itemStyle: { borderColor: "#06111f", borderWidth: 2 },
+          data: channels.map((c) => ({ name: c.language, value: c.views })),
+          color: ["#3b82f6", "#22d3ee", "#22c55e", "#f59e0b"],
+        },
+      ],
+    });
+
+    window.addEventListener("resize", () => {
+      viewsChart.resize();
+      watchChart.resize();
+      ctrChart.resize();
+      langChart.resize();
+    });
+  </script>
+</body>
+</html>
+
+
+
