@@ -127,11 +127,13 @@
     <section class="grid lg:grid-cols-2 gap-4">
       <article class="glass rounded-2xl p-4 md:p-5">
         <h2 id="chartTitleViews" class="font-bold text-lg">Views by Channel</h2>
-        <div id="chartViews" class="chart"></div>
+        <p id="rankViewsHint" class="text-slate-400 text-sm mt-1">Absolute views and portfolio share by channel.</p>
+        <div id="rankViews" class="mt-4 space-y-2"></div>
       </article>
       <article class="glass rounded-2xl p-4 md:p-5">
         <h2 id="chartTitleWatch" class="font-bold text-lg">Watch Time by Channel</h2>
-        <div id="chartWatch" class="chart"></div>
+        <p id="rankWatchHint" class="text-slate-400 text-sm mt-1">Absolute watch time and portfolio share by channel.</p>
+        <div id="rankWatch" class="mt-4 space-y-2"></div>
       </article>
       <article class="glass rounded-2xl p-4 md:p-5">
         <h2 id="chartTitleLang" class="font-bold text-lg">Portfolio Language Reach</h2>
@@ -256,6 +258,8 @@
         chartWatch: "Watch Time by Channel",
         chartLang: "Portfolio Language Reach",
         chartCtr: "Impressions CTR by Channel",
+        rankViewsHint: "Absolute views and portfolio share by channel.",
+        rankWatchHint: "Absolute watch time and portfolio share by channel.",
         snapshotTitle: "Channel Snapshot",
         snapshotSubtitle: "Core channel metrics across the portfolio.",
         packageTitle: "Partnership Package",
@@ -274,6 +278,8 @@
         yWatch: "Watch Time (M h)",
         yCtr: "CTR (%)",
         pieSeries: "Language Reach",
+        rankShare: "Portfolio share",
+        rankPos: "Position",
         cardViews: "Views",
         cardWatch: "Watch Time",
         cardImpressions: "Impressions",
@@ -303,6 +309,8 @@
         chartWatch: "Tempo de Exibicao por Canal",
         chartLang: "Alcance por Idioma no Portfolio",
         chartCtr: "CTR de Impressoes por Canal",
+        rankViewsHint: "Visualizacoes absolutas e participacao de cada canal no portfolio.",
+        rankWatchHint: "Tempo de exibicao absoluto e participacao de cada canal no portfolio.",
         snapshotTitle: "Resumo dos Canais",
         snapshotSubtitle: "Metricas essenciais dos canais no portfolio.",
         packageTitle: "Pacote de Parceria",
@@ -321,6 +329,8 @@
         yWatch: "Tempo de Exibicao (M h)",
         yCtr: "CTR (%)",
         pieSeries: "Alcance por Idioma",
+        rankShare: "Participacao no portfolio",
+        rankPos: "Posicao",
         cardViews: "Visualizacoes",
         cardWatch: "Tempo de Exibicao",
         cardImpressions: "Impressoes",
@@ -350,6 +360,8 @@
         chartWatch: "Tiempo de Reproduccion por Canal",
         chartLang: "Alcance por Idioma del Portafolio",
         chartCtr: "CTR de Impresiones por Canal",
+        rankViewsHint: "Vistas absolutas y participacion de cada canal en el portafolio.",
+        rankWatchHint: "Tiempo de reproduccion absoluto y participacion de cada canal en el portafolio.",
         snapshotTitle: "Resumen de Canales",
         snapshotSubtitle: "Metricas clave de los canales a nivel de portafolio.",
         packageTitle: "Paquete de Alianza",
@@ -368,6 +380,8 @@
         yWatch: "Tiempo de Reproduccion (M h)",
         yCtr: "CTR (%)",
         pieSeries: "Alcance por Idioma",
+        rankShare: "Participacion en el portafolio",
+        rankPos: "Posicion",
         cardViews: "Vistas",
         cardWatch: "Tiempo de Reproduccion",
         cardImpressions: "Impresiones",
@@ -387,8 +401,6 @@
     const totalImpressions = channels.reduce((a, c) => a + c.impressions, 0);
     const totalSubscribers = channels.reduce((a, c) => a + c.subscribers, 0);
 
-    const viewsChart = echarts.init(document.getElementById("chartViews"));
-    const watchChart = echarts.init(document.getElementById("chartWatch"));
     const ctrChart = echarts.init(document.getElementById("chartCtr"));
     const langChart = echarts.init(document.getElementById("chartLang"));
 
@@ -451,6 +463,8 @@
       setText("chartTitleWatch", t.chartWatch);
       setText("chartTitleLang", t.chartLang);
       setText("chartTitleCtr", t.chartCtr);
+      setText("rankViewsHint", t.rankViewsHint);
+      setText("rankWatchHint", t.rankWatchHint);
       setText("snapshotTitle", t.snapshotTitle);
       setText("snapshotSubtitle", t.snapshotSubtitle);
       setText("packageTitle", t.packageTitle);
@@ -497,26 +511,56 @@
       document.getElementById("channelCards").innerHTML = cards;
     }
 
+    function renderRankingList(items, rootId, total, valueFn, displayFn, t) {
+      const list = items.map((c, index) => {
+        const share = total > 0 ? ((valueFn(c) / total) * 100).toFixed(1) : "0.0";
+        return `
+          <article class="rounded-xl border border-slate-700/60 bg-slate-900/40 p-3">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-600/70 text-cyanx text-xs font-bold flex items-center justify-center shrink-0" title="${t.rankPos} ${index + 1}">${index + 1}</span>
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm truncate">${c.name}</p>
+                  <p class="text-xs text-slate-400">${t.rankShare}: ${share}%</p>
+                </div>
+              </div>
+              <p class="text-sm md:text-base font-bold text-right">${displayFn(c)}</p>
+            </div>
+          </article>
+        `;
+      }).join("");
+      document.getElementById(rootId).innerHTML = list;
+    }
+
+    function updateRankPanels(lang) {
+      const t = i18n[lang];
+      const { intFmt } = getFormatters(lang);
+      const viewsSorted = [...channels].sort((a, b) => b.views - a.views);
+      const watchSorted = [...channels].sort((a, b) => b.watchHours - a.watchHours);
+
+      renderRankingList(
+        viewsSorted,
+        "rankViews",
+        totalViews,
+        (c) => c.views,
+        (c) => intFmt.format(c.views),
+        t
+      );
+
+      renderRankingList(
+        watchSorted,
+        "rankWatch",
+        totalWatchHours,
+        (c) => c.watchHours,
+        (c) => `${intFmt.format(Math.round(c.watchHours))}${t.hoursSuffix}`,
+        t
+      );
+    }
+
     function updateCharts(lang) {
       const t = i18n[lang];
       const names = channels.map((c) => c.name);
-      const viewsM = channels.map((c) => +(c.views / 1e6).toFixed(1));
-      const watchM = channels.map((c) => +(c.watchHours / 1e6).toFixed(2));
       const ctr = channels.map((c) => c.ctr);
-
-      viewsChart.setOption({
-        ...chartBase,
-        xAxis: { ...chartBase.xAxis, data: names },
-        yAxis: { ...chartBase.yAxis, name: t.yViews },
-        series: [{ ...chartBase.series[0], data: viewsM, itemStyle: { color: "#3b82f6", borderRadius: [8, 8, 0, 0] } }],
-      });
-
-      watchChart.setOption({
-        ...chartBase,
-        xAxis: { ...chartBase.xAxis, data: names },
-        yAxis: { ...chartBase.yAxis, name: t.yWatch },
-        series: [{ ...chartBase.series[0], data: watchM, itemStyle: { color: "#22d3ee", borderRadius: [8, 8, 0, 0] } }],
-      });
 
       ctrChart.setOption({
         ...chartBase,
@@ -559,6 +603,7 @@
       document.documentElement.lang = nextLang;
       updateStaticTexts(nextLang);
       updateKpis(nextLang);
+      updateRankPanels(nextLang);
       updateChannelCards(nextLang);
       updateCharts(nextLang);
       updateLangButtons(nextLang);
@@ -575,8 +620,6 @@
     applyLanguage(savedLang || "en");
 
     window.addEventListener("resize", () => {
-      viewsChart.resize();
-      watchChart.resize();
       ctrChart.resize();
       langChart.resize();
     });
